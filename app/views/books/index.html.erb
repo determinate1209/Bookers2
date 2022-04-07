@@ -1,3 +1,16 @@
+
+    
+<% if @book.errors.any? %>
+<div id="error_explanation">
+  <p class=error-message><%= @book.errors.count %>errors prohibited this book from being saved:</p>
+  <ul>
+    <% @book.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+</div>
+<% end %>
+
 <%= render 'books/list', book: @book, user:@user %>
 
 <h2>Books</h2>

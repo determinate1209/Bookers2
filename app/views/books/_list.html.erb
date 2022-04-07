@@ -1,3 +1,9 @@
+<% if flash[:notice] %> 
+        <div class="flash">
+          <p class="show-text"><%= flash[:notice] %></p>
+        </div>
+<% end %>
+
 <h2>User info</h2>
   <% if user = current_user %>
     

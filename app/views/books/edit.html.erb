@@ -1,11 +1,11 @@
 <body>
   <h1>Editing Book</h1>
   
-  <% if @book.errors.any? %>
+  <% if @user.errors.any? %>
     <div id="error_explanation">
-      <p class=error-message><%= @book.errors.count %>errors prohibited this book from being saved:</p>
+      <p class=error-message><%= @user.errors.count %>errors prohibited this book from being saved:</p>
       <ul>
-        <% @book.errors.full_messages.each do |message| %>
+        <% @user.errors.full_messages.each do |message| %>
         <li><%= message %></li>
         <% end %>
       </ul>
