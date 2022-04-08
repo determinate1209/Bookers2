@@ -1,29 +1,44 @@
-<%= render 'books/list', book: @book, user:@user %>
-<h2>Book detail</h2>
-<table class="table">
-  <tbody>
-    <tr>
-      <td>
-      <%= image_tag @books.user.get_profile_image(80,80) %><br>
-        <%= link_to user_path(current_user.id) do %>
-          <%= @books.user.name %>
-        <%end%>
-      </td>
-      <td>
-        <%= @books.title %>
-      </td>
-      <td>
-        <%= @books.body %>
-      </td>
+<p id="notice"></p>
+<% if flash[:notice] %> 
+        <div class="flash">
+          <p class="show-text"><%= flash[:notice] %></p>
+        </div>
+<% end %>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-3">
+      <%= render 'users/lists', book: @book, user:@user %>
+    </div>
+    <div class="col-md-8 offset-md-1">
+      <h2>Book detail</h2>
+      <table class="table">
+        <tbody>
+          <tr>
+            <td>
+              <%= link_to user_path(@books.user_id) do %>
+                <%= image_tag @books.user.get_profile_image(80,80) %><br>
+                <%= @books.user.name %>
+              <%end%>
+            </td>
+            <td>
+              <%= @books.title %>
+            </td>
+            <td>
+              <%= @books.body %>
+            </td>
       
-      <% if @books.user == current_user %>
-        <td>
-          <%= link_to"Edit", edit_book_path(@books.id) %>
-        </td>
-        <td>
-          <%= link_to "Delete", book_path(@books), method: :delete ,   "data-confirm" => "Are you sure？" %>
-        </td>
-      <% end %>
-    </tr>
-  </tbody>
-</table>
+            <% if @books.user == current_user %>
+              <td>
+                <%= link_to"Edit", edit_book_path(@books.id) , class: "btn btn-sm btn-success"%>
+              </td>
+              <td>
+                <%= link_to "Destroy", book_path(@books), method: :delete , class: "btn btn-sm btn-danger" , "data-confirm" => "本当に消しますか？" %>
+              </td>
+            <% end %>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

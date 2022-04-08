@@ -1,8 +1,10 @@
 class BooksController < ApplicationController
+  before_action :move_to_signed_in, only: [:edit, :index, :show]
   before_action :correct_user, only: [:edit, :update]
   def index
     @book = Book.new
     @books = Book.all
+    
   end
 
   def create
@@ -30,7 +32,7 @@ class BooksController < ApplicationController
 
   def show
     @books = Book.find(params[:id])
-
+    @user = @books.user
     @book = Book.new
   end
 
@@ -53,6 +55,14 @@ class BooksController < ApplicationController
     @book = Book.find(params[:id])
     @user = @book.user
     redirect_to(books_path) unless @user == current_user
+  end
+  
+  
+  def move_to_signed_in
+    unless user_signed_in?
+      
+      redirect_to  '/users/sign_in'
+    end
   end
   
 end
