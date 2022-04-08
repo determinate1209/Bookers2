@@ -1,3 +1,7 @@
+<% flash.each do |key, value| %>
+  <%= content_tag(:div, value, class: "#{key}") %>
+<% end %>
+
 <h1>Welcome to Bookers!!</h1>
 <p>
 In Bookers,<br />
